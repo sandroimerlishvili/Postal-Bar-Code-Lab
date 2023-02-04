@@ -25,6 +25,7 @@ public class Assets {
     // sounds
 
     public static final String clickSound = "audio/clickSound.mp3";
+    public static final String errorSound = "audio/errorSound.mp3";
 
     // ui skin
 
@@ -47,6 +48,7 @@ public class Assets {
 
         manager.load(lobbyMusic, Music.class);
         manager.load(clickSound, Sound.class);
+        manager.load(errorSound, Sound.class);
 
     }
 

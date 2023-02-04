@@ -89,6 +89,7 @@ public class MainScreen extends ScreenAdapter {
         parent.lobbyMusic.play();
 
         parent.clickSound = Assets.manager.get(Assets.clickSound, Sound.class);
+        parent.errorSound = Assets.manager.get(Assets.errorSound, Sound.class);
 
         batch = new SpriteBatch();
 
@@ -187,8 +188,19 @@ public class MainScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
-                parent.clickSound.play(0.7f);
-                parent.changeScreen(parent.BARCODE);
+
+                if (textField.getText().length() == 5) {
+
+                    parent.clickSound.play(0.7f);
+                    parent.code = textField.getText();
+                    dispose();
+                    parent.changeScreen(parent.BARCODE);
+
+                } else {
+
+                    parent.errorSound.play(0.7f);
+
+                }
             }
         });
 

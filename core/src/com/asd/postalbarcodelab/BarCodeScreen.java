@@ -61,13 +61,22 @@ public class BarCodeScreen extends ScreenAdapter {
     private FreeTypeFontGenerator fontGenerator;
     private FreeTypeFontGenerator.FreeTypeFontParameter fontParameter;
 
-    // audio
+    // binary values
 
-    public BarCodeScreen(PostalBarCodeLab parentClass) {
+    String code;
+    String[] binaryDigits = {"11000", "00011",
+            "00101", "00110", "01001", "01010",
+            "01100", "10001", "10010", "10100"};
+    String binary;
+    String convertedCode;
+
+    public BarCodeScreen(PostalBarCodeLab parentClass, String code) {
 
         // GameClass Setup
 
         parent = parentClass;
+
+        this.code = code;
 
         // initialize backgrounds
 
@@ -122,6 +131,9 @@ public class BarCodeScreen extends ScreenAdapter {
         renderBackgrounds(deltaTime);
 
         font1.draw(batch, "Your converted barcode is shown below:", WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - font1.getXHeight() * 0, (float)WORLD_WIDTH * 1/2, Align.center, false);
+        font1.draw(batch, "Raw Binary: " + binary, WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - (font1.getLineHeight() * 1 + font1.getCapHeight()), (float)WORLD_WIDTH * 1/2, Align.center, false);
+        font1.draw(batch, "Barcode: " + convertedCode, WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - (font1.getLineHeight() * 2 + font1.getCapHeight() * 2), (float)WORLD_WIDTH * 1/2, Align.center, false);
+
 
         stage.act();
         stage.draw();
@@ -164,20 +176,78 @@ public class BarCodeScreen extends ScreenAdapter {
 
         createTable();
 
-        textField = addTextField("");
-        textField.setMaxLength(5);
-
-
         addTextButton("Try Another Code").addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y)
             {
                 parent.clickSound.play(0.7f);
+                dispose();
                 parent.changeScreen(parent.MAINMENU);
             }
         });
 
         Gdx.input.setInputProcessor(stage);
+
+        binary = generateBinary(code);
+        convertedCode = binaryToCode(binary);
+
+    }
+
+    private String generateBinary(String input) {
+
+        String binary = "";
+        int sum = 0;
+
+        for (int i = 0; i < input.length(); i++) {
+
+            int currentVal = Character.getNumericValue(input.charAt(i));
+            sum += currentVal;
+
+            binary += binaryDigits[currentVal] + " ";
+
+        }
+
+        if (sum == 0) {
+
+            binary += binaryDigits[0];
+
+        } else {
+
+            binary += binaryDigits[((sum + 10) / 10) * 10 - sum];
+
+        }
+
+        return binary;
+
+    }
+
+    private String binaryToCode(String input) {
+
+        String code = "|";
+
+        for (int i = 0; i < input.length(); i++) {
+
+            if (input.charAt(i) == ' ') {
+
+                code += "  ";
+
+            }
+
+            else if (input.charAt(i) == '0') {
+
+                code += ":";
+
+            } else {
+
+                code += "|";
+
+            }
+
+        }
+
+        code += "|";
+
+        return code;
 
     }
 
@@ -201,17 +271,6 @@ public class BarCodeScreen extends ScreenAdapter {
         return button;
 
     }
-
-    private TextField addTextField(String name) {
-
-        TextField textField = new TextField(name, skin);
-
-        mainTable.add(textField).width(700).height(50).padBottom(25);
-        mainTable.row();
-        return textField;
-
-    }
-
 
     @Override
     public void resize(int width, int height) {

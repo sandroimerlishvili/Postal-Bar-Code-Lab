@@ -24,6 +24,11 @@ public class PostalBarCodeLab extends Game {
 
 	protected Music lobbyMusic;
 	protected Sound clickSound;
+	protected  Sound errorSound;
+
+	// code
+
+	String code;
 
 
 	public void create() {
@@ -47,24 +52,23 @@ public class PostalBarCodeLab extends Game {
 				barCodeScreen = null;
 				mainScreen = new MainScreen(this);
 				this.setScreen(mainScreen);
+				break;
 
 			case BARCODE:
 
 				if (barCodeScreen == null) {
 
 					mainScreen = null;
-					barCodeScreen = new BarCodeScreen(this);
+					barCodeScreen = new BarCodeScreen(this, code);
 					this.setScreen(barCodeScreen);
 					break;
 
 				} else {
 
 					this.setScreen(barCodeScreen);
+					break;
 
 				}
-
-
-
 
 		}
 
