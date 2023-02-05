@@ -66,7 +66,7 @@ public class BarCodeScreen extends ScreenAdapter {
     String code;
     String[] binaryDigits = {"11000", "00011",
             "00101", "00110", "01001", "01010",
-            "01100", "10001", "10010", "10100"};
+            "01100", "10001", "10010", "10100", "11000"};
     String binary;
     String convertedCode;
 
@@ -213,7 +213,7 @@ public class BarCodeScreen extends ScreenAdapter {
 
         } else {
 
-            binary += binaryDigits[(sum + 10) / 10 * 10 - sum];
+            binary += binaryDigits[10 - (sum % 10)];
 
         }
 

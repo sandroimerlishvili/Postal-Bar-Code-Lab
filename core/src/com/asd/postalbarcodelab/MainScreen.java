@@ -86,6 +86,7 @@ public class MainScreen extends ScreenAdapter {
         parent.lobbyMusic = Assets.manager.get(Assets.lobbyMusic, Music.class);
 
         parent.lobbyMusic.setVolume(1f);
+        parent.lobbyMusic.setLooping(true);
         parent.lobbyMusic.play();
 
         parent.clickSound = Assets.manager.get(Assets.clickSound, Sound.class);
@@ -126,7 +127,7 @@ public class MainScreen extends ScreenAdapter {
 
             String text = textField.getText();
 
-            text = text.replaceAll("([a-z])", "");
+            text = text.replaceAll("[\\D]", "");
 
             textField.setText(text);
             textField.setCursorPosition(textField.getText().length());
@@ -191,14 +192,14 @@ public class MainScreen extends ScreenAdapter {
 
                 if (textField.getText().length() == 5) {
 
-                    parent.clickSound.play(0.7f);
+                    parent.clickSound.play(1f);
                     parent.code = textField.getText();
                     dispose();
                     parent.changeScreen(parent.BARCODE);
 
                 } else {
 
-                    parent.errorSound.play(0.7f);
+                    parent.errorSound.play(1f);
 
                 }
             }
