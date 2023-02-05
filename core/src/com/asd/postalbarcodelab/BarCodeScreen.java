@@ -131,8 +131,8 @@ public class BarCodeScreen extends ScreenAdapter {
         renderBackgrounds(deltaTime);
 
         font1.draw(batch, "Your converted barcode is shown below:", WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - font1.getXHeight() * 0, (float)WORLD_WIDTH * 1/2, Align.center, false);
-        font1.draw(batch, "Raw Binary: " + binary, WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - (font1.getLineHeight() * 1 + font1.getCapHeight()), (float)WORLD_WIDTH * 1/2, Align.center, false);
-        font1.draw(batch, "Barcode: " + convertedCode, WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - (font1.getLineHeight() * 2 + font1.getCapHeight() * 2), (float)WORLD_WIDTH * 1/2, Align.center, false);
+        font1.draw(batch, "Raw Binary: " + binary, WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - (font1.getLineHeight() * 2 + font1.getCapHeight() * 2), (float)WORLD_WIDTH * 1/2, Align.center, false);
+        font1.draw(batch, "Barcode: " + convertedCode, WORLD_WIDTH * 1/4, WORLD_HEIGHT * 5/6 - (font1.getLineHeight() * 3 + font1.getCapHeight() * 3), (float)WORLD_WIDTH * 1/2, Align.center, false);
 
 
         stage.act();
@@ -213,7 +213,7 @@ public class BarCodeScreen extends ScreenAdapter {
 
         } else {
 
-            binary += binaryDigits[((sum + 10) / 10) * 10 - sum];
+            binary += binaryDigits[(sum + 10) / 10 * 10 - sum];
 
         }
 
@@ -223,7 +223,7 @@ public class BarCodeScreen extends ScreenAdapter {
 
     private String binaryToCode(String input) {
 
-        String code = "|";
+        String code = " |";
 
         for (int i = 0; i < input.length(); i++) {
 
