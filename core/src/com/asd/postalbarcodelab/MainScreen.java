@@ -11,8 +11,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -166,6 +164,7 @@ public class MainScreen extends ScreenAdapter {
 
         if (Gdx.input.isKeyPressed(Input.Keys.ESCAPE)) {
 
+            super.dispose();
             System.exit(0);
 
         }
@@ -268,7 +267,7 @@ public class MainScreen extends ScreenAdapter {
 
         stage.dispose();
 
-        //batch.dispose();
+        batch.dispose();
 
 
     }

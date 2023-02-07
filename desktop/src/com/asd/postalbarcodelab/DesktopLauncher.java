@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		Lwjgl3ApplicationConfiguration config = new Lwjgl3ApplicationConfiguration();
 
 		config.setFullscreenMode(Lwjgl3ApplicationConfiguration.getDisplayMode());
-
+		config.useVsync(true);
 		config.setForegroundFPS(60);
 		config.setTitle("Sandro Imerlishvili - Postal Bar Code Lab");
 

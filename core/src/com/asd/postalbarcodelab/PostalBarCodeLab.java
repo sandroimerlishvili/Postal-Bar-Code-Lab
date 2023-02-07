@@ -1,12 +1,8 @@
 package com.asd.postalbarcodelab;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.utils.ScreenUtils;
 
 public class PostalBarCodeLab extends Game {
 
@@ -24,7 +20,7 @@ public class PostalBarCodeLab extends Game {
 
 	protected Music lobbyMusic;
 	protected Sound clickSound;
-	protected  Sound errorSound;
+	protected Sound errorSound;
 
 	// code
 
@@ -60,17 +56,21 @@ public class PostalBarCodeLab extends Game {
 
 					mainScreen = null;
 					barCodeScreen = new BarCodeScreen(this, code);
-					this.setScreen(barCodeScreen);
-					break;
-
-				} else {
-
-					this.setScreen(barCodeScreen);
-					break;
 
 				}
 
+				this.setScreen(barCodeScreen);
+				break;
+
 		}
+
+	}
+
+	@Override
+	public void dispose() {
+
+		Assets.dispose();
+		super.dispose();
 
 	}
 
