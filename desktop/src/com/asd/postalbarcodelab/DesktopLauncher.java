@@ -4,7 +4,13 @@ import com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application;
 import com.badlogic.gdx.backends.lwjgl3.Lwjgl3ApplicationConfiguration;
 import com.asd.postalbarcodelab.PostalBarCodeLab;
 
-// Please note that on macOS your application needs to be started with the -XstartOnFirstThread JVM argument
+/*
+
+This class creates a new Lwjgl3 application using the main
+PostalBarCodeLab class and configuration which is shown below
+
+*/
+
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 

@@ -20,6 +20,13 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 
+/*
+
+This class is the entry screen of the program, displaying instructions for the user
+to type in the zipcode they want to convert and handling the input once it has been received
+
+*/
+
 public class MainScreen extends ScreenAdapter {
 
     private PostalBarCodeLab parent;
@@ -94,6 +101,8 @@ public class MainScreen extends ScreenAdapter {
 
     }
 
+    // this method initializes the variables required to generate and display font on-screen
+
     private void initializeFonts() {
 
         // create bitmap fonts from file
@@ -111,6 +120,8 @@ public class MainScreen extends ScreenAdapter {
         font1.getData().setScale(1.5f);
 
     }
+
+    // this method renders the elements that are on screen (it is called continuously with increasing deltaTime)
 
     @Override
     public void render(float deltaTime) {
@@ -158,6 +169,8 @@ public class MainScreen extends ScreenAdapter {
 
     }
 
+    // this method detects input from the user (used for escape key)
+
     private void detectInput(float deltaTime) {
 
         // escape
@@ -170,6 +183,8 @@ public class MainScreen extends ScreenAdapter {
         }
 
     }
+
+    // this method initializes the screen variables needed and shows the initial elements of the screen before render starts to be called
 
     @Override
     public void show() {
@@ -217,6 +232,8 @@ public class MainScreen extends ScreenAdapter {
 
     }
 
+    // this method creates the table that contains all the stage elements (ex. text boxes)
+
     private void createTable() {
 
         mainTable = new Table();
@@ -248,7 +265,6 @@ public class MainScreen extends ScreenAdapter {
 
     }
 
-
     @Override
     public void resize(int width, int height) {
 
@@ -256,6 +272,8 @@ public class MainScreen extends ScreenAdapter {
         batch.setProjectionMatrix(camera.combined);
 
     }
+
+    // this method disposes various instance variables that are not needed when switching to a different screen
 
     @Override
     public void dispose() {
